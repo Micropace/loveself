@@ -1,0 +1,39 @@
+group 'backend'
+version '1.0.0'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+jar {
+    baseName = "loveself-backend"
+    version = '1.0.0'
+    manifest{
+        attributes 'Manifest-Version': '1.0'
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-test:1.5.7.RELEASE'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.2.1'
+}
