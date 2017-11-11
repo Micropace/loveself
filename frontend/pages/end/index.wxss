@@ -1,0 +1,4 @@
+/* pages/end.wxss */
+.content{
+  margin-top:80rpx;
+}
