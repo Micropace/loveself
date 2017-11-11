@@ -1,0 +1,21 @@
+/**index.wxss**/
+.image{
+  width:95%;
+}
+.image image{width:100%;margin-top:20rpx;height:685rpx;}
+.con{
+  width:70%;
+  margin-top:5%;
+}
+.header{text-align:center;line-height:100rpx;}
+.number{
+  padding-left:2%;
+  border:1px solid #ccc;
+  height:40px;
+  line-height:30rpx;
+  width:98%;
+  border-radius:10rpx;
+}
+button{
+  margin-top:20rpx;
+}

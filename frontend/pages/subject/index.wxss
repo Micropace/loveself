@@ -1,0 +1,22 @@
+/* pages/subject/index.wxss */
+.content{
+  width:96%;
+}
+
+.content image{width:100%;height:200rpx;}
+.main{
+  width:96%;
+  margin-top:10rpx;
+}
+.subject{
+  font-size:30rpx;
+  line-height:50rpx;
+  
+}
+.options{
+  width:95%;
+  margin-left:5%;
+}
+.submit{position:fixed;bottom:40rpx;width:96%;}
+.option{width:100%;display:block;margin-top:10rpx;line-height:90rpx;}
+.otext{margin-left:10rpx;}

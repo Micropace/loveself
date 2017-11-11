@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='image'>
+    <view class="header" wx:if="{{homePageDiscription}}">{{homePageDiscription}}</view>
+    <image src="{{bannerPicName}}" wx:if="{{bannerPicName}}"></image>
+  </view>
+  <view class='con'>
+    <input class='number' type='number' placeholder="请输入邀请人手机号" maxlength='11' bindinput='enterPhone'/>
+    <button type="primary" size="10"  
+        disabled="{{nMark}}" bindtap="submit" hover-class="other-button-hover"> 开始 </button>
+  </view>
+</view>

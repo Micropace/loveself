@@ -1,0 +1,7 @@
+<!--pages/end.wxml-->
+<view class="container">
+  <image wx:if="{{endPagePicName}}" src="{{endPagePicName}}"></image>
+  <view class='content'>
+    <text>{{endPageDiscription}}</text>
+  </view>
+</view>
