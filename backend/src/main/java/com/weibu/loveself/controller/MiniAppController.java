@@ -264,7 +264,7 @@ public class MiniAppController extends BaseController {
         if(value == null)
             return error("scene_must_be_numbers");
 
-        // 查询用户，不存在时则创建
+        // 查询用户是否存在
         User user = userDao.findByOpenid(openid);
         if(user == null)
             return error("user_not_found");
