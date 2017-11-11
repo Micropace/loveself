@@ -1,0 +1,54 @@
+# restful api 端口
+server.port: 8089
+
+# 上传的文件存储路径
+upload:
+  path: /loveself/uploader/
+
+# 日志
+logging:
+  pattern.console: '%d{yyyy-MM-dd HH:mm:ss} %clr(${LOG_LEVEL_PATTERN:-%5p-}) %clr([%18.18t]){magenta} %clr(%-40.40logger{40}){blue} : %m%n'
+  level:
+    org.springframework: WARN
+    com.weibu.loveself: INFO
+
+# 微信小程序配置
+wechat:
+  miniapp:
+    appid: 111
+    secret: 111
+    token: 111
+    aesKey: 111
+    msgDataFormat: JSON
+
+spring:
+  # 使用druid数据源
+  datasource:
+    name: name
+    url: jdbc:mysql://127.0.0.1:3306/name?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: aaa
+    password: aaa
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    minIdle: 1
+    # 考虑大数据量的表删除等操作耗时长，这里设置最长等待时间为10分钟
+    maxWait: 600000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: false
+    maxOpenPreparedStatements: 20
+
+  # 文件上传路径配置
+  mvc:
+    static-path-pattern: /**
+  resources:
+    # 将upload.path 加入静态资源
+    static-locations: /META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${upload.path}
+
