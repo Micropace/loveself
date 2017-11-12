@@ -32,58 +32,58 @@ public class QuestionsTest {
 
     @Test
     public void testInsert() {
-        List<QuestionWrapper> questions = new ArrayList<>();
-        for(int i=0; i<10; i++) {
-
-            String tc = "问题题干" + i;
-            String tp = i % 2 == 0 ? i + ".jpg" : null;
-            QuestionTitle title = new QuestionTitle(tc, tp);
-
-            List<QuestionOption> options = new ArrayList<>();
-            for(int j=0; j<4; j++) {
-                QuestionOption option = new QuestionOption(idx.get(j), "选项" + (j+1), null);
-                options.add(option);
-            }
-            List<String> answers = new ArrayList<>();
-            answers.add(options.get(0).getIndex());
-
-            QuestionWrapper qItem = new QuestionWrapper();
-            qItem.setIndex(i + 1);
-            if(i % 3 == 0) qItem.setType(QuestionTypeConst.SINGLE_SELECT);
-            else qItem.setType(QuestionTypeConst.MULTI_SELECT);
-            qItem.setTitle(title);
-            qItem.setOptions(options);
-            qItem.setAnswers(answers);
-
-            questions.add(qItem);
-        }
-
-        try {
-            String json = mapper.writeValueAsString(questions);
-            Question entity = new Question();
-            entity.setIdQrcode(1L);
-            entity.setIdSponsor(1L);
-            entity.setData(json);
-            questionDao.create(entity);
-
-            questionDao.deleteById(entity.getId());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+//        List<QuestionWrapper> questions = new ArrayList<>();
+//        for(int i=0; i<10; i++) {
+//
+//            String tc = "问题题干" + i;
+//            String tp = i % 2 == 0 ? i + ".jpg" : null;
+//            QuestionTitle title = new QuestionTitle(tc, tp);
+//
+//            List<QuestionOption> options = new ArrayList<>();
+//            for(int j=0; j<4; j++) {
+//                QuestionOption option = new QuestionOption(idx.get(j), "选项" + (j+1), null);
+//                options.add(option);
+//            }
+//            List<String> answers = new ArrayList<>();
+//            answers.add(options.get(0).getIndex());
+//
+//            QuestionWrapper qItem = new QuestionWrapper();
+//            qItem.setIndex(i + 1);
+//            if(i % 3 == 0) qItem.setType(QuestionTypeConst.SINGLE_SELECT);
+//            else qItem.setType(QuestionTypeConst.MULTI_SELECT);
+//            qItem.setTitle(title);
+//            qItem.setOptions(options);
+//            qItem.setAnswers(answers);
+//
+//            questions.add(qItem);
+//        }
+//
+//        try {
+//            String json = mapper.writeValueAsString(questions);
+//            Question entity = new Question();
+//            entity.setIdQrcode(1L);
+//            entity.setIdSponsor(1L);
+//            entity.setData(json);
+//            questionDao.create(entity);
+//
+//            questionDao.deleteById(entity.getId());
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Test
     public void testSelect() {
-        Question entity = questionDao.findByScene(10007L);
-        if(entity != null) {
-            try {
-                List<QuestionWrapper> questions = mapper.readValue(entity.getData(),
-                        mapper.getTypeFactory().constructCollectionType(List.class, QuestionWrapper.class));
-                System.out.println(questions);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+//        Question entity = questionDao.findByScene(10007L);
+//        if(entity != null) {
+//            try {
+//                List<QuestionWrapper> questions = mapper.readValue(entity.getData(),
+//                        mapper.getTypeFactory().constructCollectionType(List.class, QuestionWrapper.class));
+//                System.out.println(questions);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     @Test

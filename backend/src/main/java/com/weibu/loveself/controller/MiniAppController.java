@@ -78,6 +78,12 @@ public class MiniAppController extends BaseController {
             return error("question_config_not_found");
 
         result.put("isFirstScan", isFirstScan);
+        // 页面相关颜色配置
+        result.put("backgroundColor", questionConfig.getBackgroundColor());
+        result.put("pageDiscriptionColor", questionConfig.getPageDiscriptionColor());
+        result.put("questionActiveColor", questionConfig.getQuestionActiveColor());
+        result.put("questionOptionColor", questionConfig.getQuestionOptionColor());
+
         result.put("barTitleText", questionConfig.getBarTitleText());
         if (questionConfig.getBannerText() != null)
             result.put("bannerText", questionConfig.getBannerText());
@@ -175,6 +181,12 @@ public class MiniAppController extends BaseController {
 
         //组装结果
         Map<String, Object> result = new HashMap<>();
+        // 页面相关颜色配置
+        result.put("backgroundColor", questionConfig.getBackgroundColor());
+        result.put("pageDiscriptionColor", questionConfig.getPageDiscriptionColor());
+        result.put("questionActiveColor", questionConfig.getQuestionActiveColor());
+        result.put("questionOptionColor", questionConfig.getQuestionOptionColor());
+        //bar 文字
         result.put("barTitleText", questionConfig.getBarTitleText());
         if (questionConfig.getBannerText() != null)
             result.put("bannerText", questionConfig.getBannerText());
@@ -279,7 +291,14 @@ public class MiniAppController extends BaseController {
         if(userAnswer == null)
             return error("question_user_answer_not_found");
 
+        // 页面相关颜色配置
+        result.put("backgroundColor", questionConfig.getBackgroundColor());
+        result.put("pageDiscriptionColor", questionConfig.getPageDiscriptionColor());
+        result.put("questionActiveColor", questionConfig.getQuestionActiveColor());
+        result.put("questionOptionColor", questionConfig.getQuestionOptionColor());
+        // 答题时间
         result.put("answerTime", userAnswer.getUpdatedAt());
+        // bar文字
         result.put("barTitleText", questionConfig.getBarTitleText());
         if (questionConfig.getBannerText() != null)
             result.put("bannerText", questionConfig.getBannerText());
@@ -292,4 +311,9 @@ public class MiniAppController extends BaseController {
         return success(result);
     }
 
+    // todo 统计相关流程
+    // todo 1. 建立组织结构信息表，独立的代表组织分类信息，独立的统计结果表。
+    // todo 2. 组织结构数据从excel导入。
+    // todo 3. 定时任务处理所有代表的每天数量统计，结果存储中间结果表：一个代表、一套题、一天的答题量。
+    // todo 4. 接口查询代表关于那几套题的统计结果，直接从中间结果选取结果，计算最终的结果。
 }
