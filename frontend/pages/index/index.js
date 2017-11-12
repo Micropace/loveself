@@ -13,7 +13,7 @@ Page({
   enterPhone(e){
     var value = e.detail.value,
         that =this;
-    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    var myreg = /^(((13[0-9]{1})|147|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
     if (myreg.test(value)) {
        that.setData({
          PhoneNumber: value,
@@ -25,14 +25,23 @@ Page({
       })
     }
   },
+
   submit(){
+
     if(!this.data.rMark){
+        _iss.toast("请勿重复提交");
         return;
     }
     _iss.registerIphone({openid:this.data.openId,mobile:this.data.PhoneNumber},res =>{
         this.setData({
             rMark: false
-        })
+        });
+        let that =this;
+        setTimeout(function(){
+            that.setData({
+                rMark: true
+            });
+        },1000);
       _iss.open("/pages/subject/index?openId="+this.data.openId+"&&scene="+this.data.scene);
 
     },err =>{
@@ -45,8 +54,7 @@ Page({
    
   },
   onLoad: function (options) {
-
-      var scene = options.scene?decodeURIComponent(options.scene):10001,
+      var scene = options.scene?decodeURIComponent(options.scene):10003,
           that =this;
       wx.login({
           success:function(res){
@@ -59,10 +67,15 @@ Page({
                     _iss.getHomepage(url,res =>{
                         wx.setNavigationBarTitle({
                             title: res.data.barTitleText
+                        });
+                        wx.setNavigationBarColor({
+                            frontColor:'#000000',
+                            backgroundColor: res.data.backgroundColor
                         })
                         that.setData({
                           homePageDiscription:res.data.homePageDiscription,
-                          bannerPicName:_iss.serverDomain()+res.data.bannerPicName
+                          bannerPicName: _iss.serverDomain() + res.data.homePagePicName,
+                          bgColor:res.data.backgroundColor
                         })
 
                       },err =>{

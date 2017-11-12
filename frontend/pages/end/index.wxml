@@ -1,7 +1,8 @@
 <!--pages/end.wxml-->
-<view class="container">
+<view class="container" style="background:{{bgColor}}">
   <image wx:if="{{endPagePicName}}" src="{{endPagePicName}}"></image>
   <view class='content'>
-    <text>{{endPageDiscription}}</text>
+    <text class="title" style="color:{{pageDiscriptionColor}}">{{endPageDiscription}}</text>
+
   </view>
 </view>

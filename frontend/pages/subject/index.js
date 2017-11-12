@@ -9,9 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bText:'下一个',
+    bText:'下一题',
     bannerText:'标题',
-    bannerPicName:'图片',
+    bannerPicName:'',
     num:0,
     results:[],
 
@@ -81,9 +81,18 @@ Page({
         wx.setNavigationBarTitle({
             title: res.data.barTitleText
         });
+
+          wx.setNavigationBarColor({
+              frontColor:'#000000',
+              backgroundColor: res.data.backgroundColor
+          })
+
         this.setData({
             questions:res.data.questions,
-            bannerPicName:_iss.serverDomain()+res.data.bannerPicName
+            backgroundColor:res.data.backgroundColor,
+            bannerPicName:_iss.serverDomain()+res.data.bannerPicName,
+            questionActiveColor:res.data.questionActiveColor,
+            questionOptionColor:res.data.questionOptionColor
         })
 
     },err =>{

@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container" style="background:{{bgColor}}">
   <view class='image'>
     <view class="header" wx:if="{{homePageDiscription}}">{{homePageDiscription}}</view>
     <image src="{{bannerPicName}}" wx:if="{{bannerPicName}}"></image>

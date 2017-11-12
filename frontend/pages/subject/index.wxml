@@ -1,16 +1,18 @@
-<view class="container">
+<view class="container" style="background:{{backgroundColor}}">
   <view class='content'>
     <image wx:if="bannerPicName" src="{{bannerPicName}}"></image>
   </view>
   <view class="main">
-    <view>
-      {{num+1}}/{{questions.length}}:
-    </view>
     <view class='subject'>
-        <view>{{questions[num].title.content}}</view>
+        <view class="header" style="background:{{questionActiveColor}}">
+            <view class="show_n">
+              {{num+1}}/{{questions.length}}:
+            </view>
+            <view class="title">{{questions[num].title.content}}</view>
+            </view>
         <view class='options'>
             <block wx:for="{{questions[num].options}}" wx:key="option">
-                <text style="background:{{item.sel?'#ccc':''}}" class='option' data-index="{{index}}" bindtap='select'>{{item.index}}:<text class='otext'>{{item.content}}</text></text>
+                <text style="background:{{item.sel?questionActiveColor:questionOptionColor}}" class='option' data-index="{{index}}" bindtap='select'><text class="pink">{{item.index}}:</text><text class='otext'>{{item.content}}</text></text>
             </block>
         </view>
         <button type="primary" class='submit' size="10"  

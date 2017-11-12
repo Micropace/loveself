@@ -13,10 +13,16 @@
   line-height:50rpx;
   
 }
-.options{
-  width:95%;
-  margin-left:5%;
+.title{font-size:32rpx;}
+.pink{
+
 }
+.show_n{color:#e5a78f;font-size:32rpx;}
+.header{padding:20rpx 3%;width:94%;border-top:1px solid #dbdcdc;border-bottom:1px solid #e5a78f;background:#f2d5cb;}
+.options{
+  width:97%;
+}
+.options .option{background:#eee7e7}
 .submit{position:fixed;bottom:40rpx;width:96%;}
-.option{width:100%;display:block;margin-top:10rpx;line-height:90rpx;}
+.option{width:100%;display:block;margin-top:10rpx;line-height:90rpx;padding-left:3%;}
 .otext{margin-left:10rpx;}
