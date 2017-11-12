@@ -54,8 +54,7 @@ Page({
    
   },
   onLoad: function (options) {
-
-      var scene = options.scene?decodeURIComponent(options.scene):10003,
+      var scene = options.scene?decodeURIComponent(options.scene):10001,
           that =this;
       wx.login({
           success:function(res){
@@ -68,10 +67,15 @@ Page({
                     _iss.getHomepage(url,res =>{
                         wx.setNavigationBarTitle({
                             title: res.data.barTitleText
+                        });
+                        wx.setNavigationBarColor({
+                            frontColor:'#000000',
+                            backgroundColor: res.data.backgroundColor
                         })
                         that.setData({
                           homePageDiscription:res.data.homePageDiscription,
-                          bannerPicName:_iss.serverDomain()+res.data.bannerPicName
+                          bannerPicName: _iss.serverDomain() + res.data.homePagePicName,
+                          bgColor:res.data.backgroundColor
                         })
 
                       },err =>{

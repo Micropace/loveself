@@ -1,4 +1,13 @@
 /* pages/end.wxss */
 .content{
   margin-top:80rpx;
+  width:82%;
+  text-align:center;
+}
+.container image{
+  width:96%;
+  height:690rpx;
+}
+.title{
+    color:#902b2a;
 }

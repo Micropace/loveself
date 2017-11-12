@@ -2,9 +2,9 @@
 .image{
   width:95%;
 }
-.image image{width:100%;margin-top:20rpx;height:685rpx;}
+.image image{width:100%;margin-top:20rpx;height:690rpx;}
 .con{
-  width:70%;
+  width:95%;
   margin-top:5%;
 }
 .header{text-align:center;line-height:100rpx;}
@@ -15,6 +15,7 @@
   line-height:30rpx;
   width:98%;
   border-radius:10rpx;
+  background:#fff;
 }
 button{
   margin-top:20rpx;

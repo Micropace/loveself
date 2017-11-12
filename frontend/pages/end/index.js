@@ -19,10 +19,16 @@ Page({
 
         wx.setNavigationBarTitle({
            title: res.data.barTitleText
-        })
+        });
+          wx.setNavigationBarColor({
+              frontColor:'#000000',
+              backgroundColor: res.data.backgroundColor
+          })
         that.setData({
             endPageDiscription:res.data.endPageDiscription,
-            endPagePicName:_iss.serverDomain()+res.data.endPagePicName
+            endPagePicName:_iss.serverDomain()+res.data.endPagePicName,
+            bgColor:res.data.backgroundColor,
+            pageDiscriptionColor:res.data.pageDiscriptionColor
         })
 
       },err =>{
