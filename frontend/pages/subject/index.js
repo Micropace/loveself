@@ -11,7 +11,7 @@ Page({
   data: {
     bText:'下一题',
     bannerText:'标题',
-    bannerPicName:'图片',
+    bannerPicName:'',
     num:0,
     results:[],
 

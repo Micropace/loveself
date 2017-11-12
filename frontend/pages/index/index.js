@@ -54,7 +54,7 @@ Page({
    
   },
   onLoad: function (options) {
-      var scene = options.scene?decodeURIComponent(options.scene):10001,
+      var scene = options.scene?decodeURIComponent(options.scene):10003,
           that =this;
       wx.login({
           success:function(res){

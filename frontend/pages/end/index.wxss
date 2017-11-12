@@ -10,4 +10,5 @@
 }
 .title{
     color:#902b2a;
+    font-size:40rpx;
 }
