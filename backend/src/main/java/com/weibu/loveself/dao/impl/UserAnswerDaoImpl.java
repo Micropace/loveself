@@ -54,4 +54,9 @@ public class UserAnswerDaoImpl implements UserAnswerDao {
     public UserAnswer findUserAnswerByScene(String openid, Long scene) {
         return userAnswerMapper.selectUserAnswerByScene(openid, scene);
     }
+
+    @Override
+    public List<UserAnswer> selectUserAnswersByQuestionId(Long idQuestion) {
+        return userAnswerMapper.selectUserAnswersByQuestionId(idQuestion);
+    }
 }

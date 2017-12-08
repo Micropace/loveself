@@ -5,6 +5,8 @@ import com.weibu.loveself.entity.UserAnswer;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 public interface UserAnswerMapper extends IBaseMybatisMapper<UserAnswer> {
 
     @Select(value = "select user_answer.*\n" +
@@ -18,4 +20,7 @@ public interface UserAnswerMapper extends IBaseMybatisMapper<UserAnswer> {
             "        where user.openid = #{openid}\n" +
             "        and qrcode.scene = #{scene}")
     UserAnswer selectUserAnswerByScene(@Param("openid") String openid, @Param("scene") Long scene);
+
+    @Select(value = "select * from user_answer where id_question=#{idQuestion}")
+    List<UserAnswer> selectUserAnswersByQuestionId(@Param("idQuestion") Long idQuestion);
 }
