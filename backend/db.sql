@@ -163,3 +163,148 @@ create table `user_answer` (
     ON UPDATE CASCADE,
   PRIMARY KEY (`id`)
 ) engine=InnoDB auto_increment=1 default charset=utf8;
+
+
+
+
+-- 以下是统计时动态创建*************************************************
+
+
+-- 代表答题次数统计表
+create table `sponsor_statistics_3` (
+  `id`          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '自增主键',
+  `mobile`      VARCHAR(11)     NOT NULL
+  COMMENT '代表手机号',
+  `count`       INT             NOT NULL DEFAULT 0
+  COMMENT '答题次数',
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=utf8;
+
+-- 组织结构信息表
+create table `organization` (
+  `id`       BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '自增主键',
+  `name`     VARCHAR(32)     NULL
+  COMMENT '代表姓名',
+  `mobile`   VARCHAR(11)     NULL
+  COMMENT '代表手机号',
+  `tag`      VARCHAR(32)     NULL
+  COMMENT '新分组',
+  `zone`     VARCHAR(32)     NULL
+  COMMENT '大区',
+  `area`     VARCHAR(32)     NULL
+  COMMENT '小区',
+  `province` VARCHAR(32)     NULL
+  COMMENT '大区所属的省份',
+  `position` VARCHAR(32)     NULL
+  COMMENT '职位',
+  `ext1`     VARCHAR(32)     NULL
+  COMMENT '扩展1',
+  `ext2`     VARCHAR(32)     NULL
+  COMMENT '扩展2',
+  `ext3`     VARCHAR(32)     NULL
+  COMMENT '扩展3',
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=utf8;
+
+create table `organization_statistics_3` (
+  `id`       BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '自增主键',
+  `count`    INT             NULL DEFAULT 0
+  COMMENT '答题次数',
+  `ratio`    VARCHAR(32)     NULL DEFAULT '0.00%'
+  COMMENT '完成率(count/15 * 100%)',
+  `name`     VARCHAR(32)     NULL
+  COMMENT '代表姓名',
+  `mobile`   VARCHAR(11)     NULL
+  COMMENT '代表手机号',
+  `tag`      VARCHAR(32)     NULL
+  COMMENT '新分组',
+  `zone`     VARCHAR(32)     NULL
+  COMMENT '大区',
+  `area`     VARCHAR(32)     NULL
+  COMMENT '小区',
+  `province` VARCHAR(32)     NULL
+  COMMENT '代表所属的省份',
+  `position` VARCHAR(32)     NULL
+  COMMENT '职位',
+  `ext1`     VARCHAR(32)     NULL
+  COMMENT '扩展1',
+  `ext2`     VARCHAR(32)     NULL
+  COMMENT '扩展2',
+  `ext3`     VARCHAR(32)     NULL
+  COMMENT '扩展3',
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=utf8;
+
+-- area地区统计结果表
+create table `organization_statistics_3_area` (
+  `id`            BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '自增主键',
+  `area`          VARCHAR(32)     NULL
+  COMMENT '小区',
+  `sponsor_count` INT             NULL DEFAULT 0
+  COMMENT '地区代表总数',
+  `count`         INT             NULL DEFAULT 0
+  COMMENT '答题次数',
+  `ratio`         VARCHAR(32)     NULL DEFAULT '0.00%'
+  COMMENT '完成率，count/(spnsor_count*15) * 100%',
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=utf8;
+
+-- zone大区统计结果表
+create table `organization_statistics_3_zone` (
+  `id`            BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '自增主键',
+  `zone`          VARCHAR(32)     NULL
+  COMMENT '大区',
+  `sponsor_count` INT             NULL DEFAULT 0
+  COMMENT '地区代表总数',
+  `count`         INT             NULL DEFAULT 0
+  COMMENT '答题次数',
+  `ratio`         VARCHAR(32)     NULL DEFAULT '0.00%'
+  COMMENT '完成率，count/(spnsor_count*15) * 100%',
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=utf8;
+
+-- 地区经理统计结果表
+create table `organization_statistics_3_AM` (
+  `id`            BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '自增主键',
+  `am_name`       VARCHAR(32)     NULL
+  COMMENT '地区经理姓名',
+  `am_mobile`     VARCHAR(11)     NULL
+  COMMENT '地区经理手机号',
+  `count`         INT             NULL DEFAULT 0
+  COMMENT '答题次数',
+  `ratio`         VARCHAR(32)     NULL DEFAULT '0.00%'
+  COMMENT '完成率，count/15 * 100%',
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=utf8;
+
+-- 省份统计结果表
+create table `organization_statistics_3_province` (
+  `id`            BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '自增主键',
+  `province` VARCHAR(32)     NULL
+  COMMENT '省份名称',
+  `sponsor_count` INT             NULL DEFAULT 0
+  COMMENT '省份内代表总数',
+  `count`         INT             NULL DEFAULT 0
+  COMMENT '答题次数',
+  `ratio`         VARCHAR(32)     NULL DEFAULT '0.00%'
+  COMMENT '完成率，count/(spnsor_count*15) * 100%',
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=utf8;
+
+-- 第三套题答题结果中关联的代表手机号表
+create table `sponsor_statistics_mobile_3` (
+  `id`            BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '自增主键',
+  `name`     VARCHAR(32)     NULL
+  COMMENT '代表姓名',
+  `mobile`   VARCHAR(11)     NULL
+  COMMENT '代表手机号',
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=utf8;

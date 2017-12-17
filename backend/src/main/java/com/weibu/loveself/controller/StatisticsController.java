@@ -3,7 +3,12 @@ package com.weibu.loveself.controller;
 import com.weibu.loveself.common.BaseController;
 import com.weibu.loveself.common.ResponseMsg;
 import com.weibu.loveself.dao.QuestionDao;
+import com.weibu.loveself.dao.SponsorDao;
+import com.weibu.loveself.dao.UserAnswerDao;
+import com.weibu.loveself.entity.Organization;
 import com.weibu.loveself.entity.Question;
+import com.weibu.loveself.entity.Sponsor;
+import com.weibu.loveself.entity.UserAnswer;
 import com.weibu.loveself.entity.statistics.SingleOptionResult;
 import com.weibu.loveself.service.IStatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +29,7 @@ public class StatisticsController extends BaseController {
     private IStatisticsService iStatisticsService;
 
     @ResponseBody
-    @RequestMapping(value = "/single", method = RequestMethod.GET)
+    @RequestMapping(value = "/answers", method = RequestMethod.GET)
     public ResponseMsg singleOptionStatistics(@RequestParam(value="qid") Long idQuestion) {
 
         Question question = questionDao.findById(idQuestion);
@@ -35,5 +40,4 @@ public class StatisticsController extends BaseController {
         List<SingleOptionResult> results = iStatisticsService.statisticsQuestionSingleResult(question);
         return success(results);
     }
-
 }
