@@ -28,10 +28,9 @@ jar {
 //    version = '1.0.0'
 //}
 
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-œ
+
 repositories {
     mavenCentral()
     maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
