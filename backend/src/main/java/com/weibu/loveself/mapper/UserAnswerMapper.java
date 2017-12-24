@@ -21,6 +21,14 @@ public interface UserAnswerMapper extends IBaseMybatisMapper<UserAnswer> {
             "        and qrcode.scene = #{scene}")
     UserAnswer selectUserAnswerByScene(@Param("openid") String openid, @Param("scene") Long scene);
 
-    @Select(value = "select * from user_answer where id_question=#{idQuestion}")
+    @Select(value = "select user_answer.* \n" +
+            "        from user_answer\n" +
+            "            right join user_relation\n" +
+            "                on user_answer.id_user = user_relation.id_user\n" +
+            "            right join sponsor\n" +
+            "                on user_relation.id_sponsor = sponsor.id\n" +
+            "            right join organization\n" +
+            "                on sponsor.mobile = organization.mobile\n" +
+            "        where user_answer.id_question=#{idQuestion}")
     List<UserAnswer> selectUserAnswersByQuestionId(@Param("idQuestion") Long idQuestion);
 }
