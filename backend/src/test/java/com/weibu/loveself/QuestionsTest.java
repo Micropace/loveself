@@ -91,20 +91,21 @@ public class QuestionsTest {
     public void init10001() {
 //        List<QuestionWrapper> questions = new ArrayList<>();
 //
-//        QuestionTitle title = new QuestionTitle("以下描述的情景，哪些与您临床诊治冠心病的实际情况相符或相近？（可多选）", null);
+//        QuestionTitle title = new QuestionTitle("本次幻灯分享的两篇文献中，稳定性心绞痛患者，在β受体阻滞剂使用基础上联合万爽力，可以进一步降低心绞痛发作次数达？", null);
 //
 //        // 选项
 //        List<QuestionOption> options = new ArrayList<>();
-//        options.add(new QuestionOption("A", "现有治疗基础上，仍有约1/3存在心绞痛症状", null));
-//        options.add(new QuestionOption("B", "冠心病患者的运动耐量较健康对照下降约30-40%", null));
-//        options.add(new QuestionOption("C", "约1/3的冠心病患者LVEF<50%", null));
+//        options.add(new QuestionOption("A", "40-50%", null));
+//        options.add(new QuestionOption("B", "50-60%", null));
+//        options.add(new QuestionOption("C", "60-70%", null));
+//        options.add(new QuestionOption("D", "70%以上", null));
 //
 //        // 正确答案
 //        List<String> answers = new ArrayList<>();
 //
 //        QuestionWrapper qItem = new QuestionWrapper();
 //        qItem.setIndex(1);
-//        qItem.setType(QuestionTypeConst.MULTI_SELECT);
+//        qItem.setType(QuestionTypeConst.SINGLE_SELECT);
 //        qItem.setTitle(title);
 //        qItem.setOptions(options);
 //        qItem.setAnswers(answers);
@@ -127,12 +128,12 @@ public class QuestionsTest {
 //        List<QuestionWrapper> questions = new ArrayList<>();
 //
 //        // 题干
-//        QuestionTitle title = new QuestionTitle("清晨是心绞痛发作高峰时段，研究显示，清晨(04-08:00)心绞痛占全天的百分比是多少？", null);
+//        QuestionTitle title = new QuestionTitle("以下药代动力学说法错误的是？", null);
 //        List<QuestionOption> options = new ArrayList<>();
-//        options.add(new QuestionOption("A", "20%", null));
-//        options.add(new QuestionOption("B", "40%", null));
-//        options.add(new QuestionOption("C", "60%", null));
-//        options.add(new QuestionOption("D", "80%", null));
+//        options.add(new QuestionOption("A", "目前治疗心绞痛的血流动力学药物仍存在一些局限性，如长效硝酸酯药物，由于耐药性问题，其每天需要有10-12小时的空窗期以防止耐药产生，因此对清晨危险时段疗效差", null));
+//        options.add(new QuestionOption("B", "人体药代动力学实验表明，万爽力缓释片谷浓度较普通片提高了31%", null));
+//        options.add(new QuestionOption("C", "万爽力缓释片生物利用度为50%", null));
+//        options.add(new QuestionOption("D", "万爽力缓释片最佳药效持续时间T75（平台期，血浆浓度≥75%最大血浆浓度的时间）为11小时", null));
 //
 //        // 正确答案
 //        List<String> answers = new ArrayList<>();
