@@ -5,6 +5,7 @@ import com.weibu.loveself.common.ResponseMsg;
 import com.weibu.loveself.dao.QrcodeDao;
 import com.weibu.loveself.entity.Qrcode;
 import com.weibu.loveself.service.IQrCodeService;
+import com.weibu.loveself.utils.ValidatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +44,12 @@ public class QrCodeController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseMsg createQrCode(@RequestBody Map<String, String> params) {
+        String mobile = params.get("mobile");
         String scene = params.get("scene");
+
+        if(mobile.length() != 11 || !ValidatorUtil.isMobile(mobile)) {
+            return error("illegal_mobile");
+        }
 
         Long value = null;
         try {
@@ -54,7 +60,10 @@ public class QrCodeController extends BaseController {
         if(value == null)
             return error("scene_must_be_numbers");
 
-        Map<String, String> res = iQrCodeService.getWxaQrCode(value);
+        // 最终的场景值=mobile+scene组成的纯数字字符串
+        Long scnenValue = Long.parseLong(mobile + scene);
+
+        Map<String, String> res = iQrCodeService.getWxaQrCode(scnenValue);
         if(res != null) {
             Qrcode qrcode = new Qrcode();
             qrcode.setScene(value);

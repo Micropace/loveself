@@ -42,7 +42,7 @@ public class MiniAppController extends BaseController {
      * 首页内容获取接口
      * 当openid的用户不存在则创建
      * @param openid 用户openid
-     * @param scene 场景值
+     * @param scene 场景值: 格式为mobile+scene, 手机号11位，后面追加自定义数字字符串值
      * @return ResponseMsg
      */
     @ResponseBody
@@ -77,6 +77,10 @@ public class MiniAppController extends BaseController {
         if(questionConfig == null)
             return error("question_config_not_found");
 
+        // 从场景值中获取手机号
+        String mobile = scene.substring(0, 11);
+
+        result.put("mobile", mobile);
         result.put("isFirstScan", isFirstScan);
         // 页面相关颜色配置
         result.put("backgroundColor", questionConfig.getBackgroundColor());
