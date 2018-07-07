@@ -1,6 +1,9 @@
 package com.weibu.loveself.entity;
 
 import com.weibu.loveself.common.MybatisBasePagerEntity;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
@@ -8,6 +11,9 @@ import javax.persistence.Column;
 /**
  * 二维码信息表，生成后创建记录
  */
+@Getter
+@Setter
+@ToString
 public class Qrcode extends MybatisBasePagerEntity {
     /** 二维码对应的场景值 */
     @Column(name = "scene", nullable = false)
@@ -30,73 +36,4 @@ public class Qrcode extends MybatisBasePagerEntity {
     @Column(name = "updated_at")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private String updatedAt;
-
-    @Override
-    public String toString() {
-        return "Qrcode{" +
-                "scene=" + scene +
-                ", type=" + type +
-                ", name='" + name + '\'' +
-                ", path='" + path + '\'' +
-                ", expire=" + expire +
-                ", createdAt='" + createdAt + '\'' +
-                ", updatedAt='" + updatedAt + '\'' +
-                '}';
-    }
-
-    public Long getScene() {
-        return scene;
-    }
-
-    public void setScene(Long scene) {
-        this.scene = scene;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public Integer getExpire() {
-        return expire;
-    }
-
-    public void setExpire(Integer expire) {
-        this.expire = expire;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }

@@ -7,6 +7,7 @@ import com.weibu.loveself.dao.*;
 import com.weibu.loveself.entity.*;
 import com.weibu.loveself.entity.wrapper.QuestionAnswerWrapper;
 import com.weibu.loveself.entity.wrapper.QuestionWrapper;
+import com.weibu.loveself.utils.ValidatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +43,7 @@ public class MiniAppController extends BaseController {
      * 首页内容获取接口
      * 当openid的用户不存在则创建
      * @param openid 用户openid
-     * @param scene 场景值: 格式为mobile+scene, 手机号11位，后面追加自定义数字字符串值
+     * @param scene 场景值: 格式为mobile+题ID, 手机号11位，后面追加对应的套题ID
      * @return ResponseMsg
      */
     @ResponseBody
@@ -57,7 +58,7 @@ public class MiniAppController extends BaseController {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        if(value == null)
+        if(scene == null || scene.length() <= 11 || value == null)
             return error("scene_must_be_numbers");
 
         // 查询用户，不存在时则创建
@@ -71,14 +72,19 @@ public class MiniAppController extends BaseController {
             isFirstScan = 1;
         }
 
+        // 从场景值中获取手机号和题ID
+        String mobile = scene.substring(0, 11);
+        Long idQuestion = Long.parseLong(scene.substring(11, scene.length()));
+
+        if(!ValidatorUtil.isMobile(mobile)) {
+            return error("illegal_mobile");
+        }
+
         // 查询场景值对应题库的配置信息
         Map<String, Object> result = new HashMap<>();
-        QuestionConfig questionConfig = questionConfigDao.findByScene(value);
+        QuestionConfig questionConfig = questionConfigDao.findById(idQuestion);
         if(questionConfig == null)
             return error("question_config_not_found");
-
-        // 从场景值中获取手机号
-        String mobile = scene.substring(0, 11);
 
         result.put("mobile", mobile);
         result.put("isFirstScan", isFirstScan);

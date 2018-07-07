@@ -21,6 +21,53 @@ create table `qrcode` (
   PRIMARY KEY (`id`)
 ) engine=InnoDB auto_increment=1 default charset=utf8;
 
+-- 题库信息表
+create table `question` (
+  `id`         BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '自增主键',
+  `data`       TEXT            NOT NULL
+  COMMENT '题目信息Json字符串',
+  `created_at` DATETIME        NULL,
+  `updated_at` DATETIME        NULL,
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=utf8;
+
+-- 题库配置信息表
+create table `question_config` (
+  `id`                              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
+  COMMENT '自增主键',
+  `id_question`                     BIGINT UNSIGNED NOT NULL
+  COMMENT '题库信息表ID',
+  `background_color`                VARCHAR(10)     NOT NULL
+  COMMENT '页面背景色',
+  `page_discription_color`          VARCHAR(10)     NOT NULL
+  COMMENT '页面描述文字的颜色',
+  `question_active_color`           VARCHAR(10)     NOT NULL
+  COMMENT '题干、题目选项选中背景色',
+  `question_option_color`           VARCHAR(10)     NOT NULL
+  COMMENT '题目选项背景色',
+  `bar_title_text`                  VARCHAR(32)     NULL
+  COMMENT '页面顶部Bar显示文字',
+  `banner_text`                     VARCHAR(32)     NULL
+  COMMENT 'banner文字',
+  `banner_pic_name`                 VARCHAR(256)    NULL
+  COMMENT 'banner图片路径',
+  `home_page_discription`           VARCHAR(256)    NULL
+  COMMENT '首页描述文字',
+  `home_page_pic_name`              VARCHAR(256)    NULL
+  COMMENT '首页图片路径',
+  `end_page_discription`            VARCHAR(256)    NULL
+  COMMENT '结束页描述文字',
+  `end_page_pic_name`               VARCHAR(256)    NULL
+  COMMENT '结束页图片路径',
+  `created_at`                      DATETIME        NULL,
+  `updated_at`                      DATETIME        NULL,
+  FOREIGN KEY (`id_question`) REFERENCES question (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=utf8;
+
 -- 用户信息表
 create table `user` (
   `id`         BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
@@ -83,61 +130,6 @@ create table `user_relation` (
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   FOREIGN KEY (`id_user`) REFERENCES user (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  PRIMARY KEY (`id`)
-) engine=InnoDB auto_increment=1 default charset=utf8;
-
--- 题库信息表
-create table `question` (
-  `id`         BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
-  COMMENT '自增主键',
-  `id_sponsor` BIGINT UNSIGNED NULL
-  COMMENT '代表信息表ID',
-  `id_qrcode`  BIGINT UNSIGNED NOT NULL
-  COMMENT '二维码表ID',
-  `data`       TEXT            NOT NULL
-  COMMENT '题目信息Json字符串',
-  `created_at` DATETIME        NULL,
-  `updated_at` DATETIME        NULL,
-  FOREIGN KEY (`id_qrcode`) REFERENCES qrcode (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  PRIMARY KEY (`id`)
-) engine=InnoDB auto_increment=1 default charset=utf8;
-
-
--- 题库配置信息表
-create table `question_config` (
-  `id`                              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT
-  COMMENT '自增主键',
-  `id_question`                     BIGINT UNSIGNED NOT NULL
-  COMMENT '题库信息表ID',
-  `background_color`                VARCHAR(10)     NOT NULL
-  COMMENT '页面背景色',
-  `page_discription_color`          VARCHAR(10)     NOT NULL
-  COMMENT '页面描述文字的颜色',
-  `question_active_color`           VARCHAR(10)     NOT NULL
-  COMMENT '题干、题目选项选中背景色',
-  `question_option_color`           VARCHAR(10)     NOT NULL
-  COMMENT '题目选项背景色',
-  `bar_title_text`                  VARCHAR(32)     NULL
-  COMMENT '页面顶部Bar显示文字',
-  `banner_text`                     VARCHAR(32)     NULL
-  COMMENT 'banner文字',
-  `banner_pic_name`                 VARCHAR(256)    NULL
-  COMMENT 'banner图片路径',
-  `home_page_discription`           VARCHAR(256)    NULL
-  COMMENT '首页描述文字',
-  `home_page_pic_name`              VARCHAR(256)    NULL
-  COMMENT '首页图片路径',
-  `end_page_discription`            VARCHAR(256)    NULL
-  COMMENT '结束页描述文字',
-  `end_page_pic_name`               VARCHAR(256)    NULL
-  COMMENT '结束页图片路径',
-  `created_at`                      DATETIME        NULL,
-  `updated_at`                      DATETIME        NULL,
-  FOREIGN KEY (`id_question`) REFERENCES question (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   PRIMARY KEY (`id`)

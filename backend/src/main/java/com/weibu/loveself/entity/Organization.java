@@ -1,12 +1,18 @@
 package com.weibu.loveself.entity;
 
 import com.weibu.loveself.common.MybatisBasePagerEntity;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 
 /**
  * 组织结构信息表
  */
+@Getter
+@Setter
+@ToString
 public class Organization extends MybatisBasePagerEntity {
     /** 代表姓名 */
     @Column(name = "name")
@@ -38,100 +44,4 @@ public class Organization extends MybatisBasePagerEntity {
     /** 扩展，暂无 */
     @Column(name = "ext3")
     private String ext3;
-
-    @Override
-    public String toString() {
-        return "Organization{" +
-                "name='" + name + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", tag='" + tag + '\'' +
-                ", zone='" + zone + '\'' +
-                ", area='" + area + '\'' +
-                ", province='" + province + '\'' +
-                ", position='" + position + '\'' +
-                ", ext1='" + ext1 + '\'' +
-                ", ext2='" + ext2 + '\'' +
-                ", ext3='" + ext3 + '\'' +
-                '}';
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
-    public String getZone() {
-        return zone;
-    }
-
-    public void setZone(String zone) {
-        this.zone = zone;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getExt1() {
-        return ext1;
-    }
-
-    public void setExt1(String ext1) {
-        this.ext1 = ext1;
-    }
-
-    public String getExt2() {
-        return ext2;
-    }
-
-    public void setExt2(String ext2) {
-        this.ext2 = ext2;
-    }
-
-    public String getExt3() {
-        return ext3;
-    }
-
-    public void setExt3(String ext3) {
-        this.ext3 = ext3;
-    }
 }

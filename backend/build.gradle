@@ -41,6 +41,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-jdbc:1.5.7.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-data-rest:1.5.7.RELEASE'
     compile 'mysql:mysql-connector-java:6.0.5'
+    compile 'org.projectlombok:lombok:1.16.20'
+
     //war禁用自带tomcat
 //    providedCompile 'org.springframework.boot:spring-boot-starter-tomcat:1.5.7.RELEASE'
     //mybatis
