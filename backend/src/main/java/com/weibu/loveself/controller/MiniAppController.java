@@ -8,6 +8,8 @@ import com.weibu.loveself.entity.*;
 import com.weibu.loveself.entity.wrapper.QuestionAnswerWrapper;
 import com.weibu.loveself.entity.wrapper.QuestionWrapper;
 import com.weibu.loveself.utils.ValidatorUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 public class MiniAppController extends BaseController {
+
+    private final static Logger logger = LoggerFactory.getLogger(MiniAppController.class.getSimpleName());
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -51,6 +55,7 @@ public class MiniAppController extends BaseController {
     public ResponseMsg getHomePageConteng(@RequestParam(value="openid") String openid,
                                           @RequestParam(value="scene") String scene) {
 
+        logger.info("openid: {}, scene: {}", openid, scene);
         // 参数校验
         Long value = null;
         try {
@@ -118,6 +123,8 @@ public class MiniAppController extends BaseController {
         String openid = params.get("openid");
         String mobile = params.get("mobile");
 
+        logger.info("openid: {}, mobile: {}", openid, mobile);
+
         //查询用户是否存在
         User user = userDao.findByOpenid(openid);
         if(user == null) {
@@ -156,6 +163,8 @@ public class MiniAppController extends BaseController {
     public ResponseMsg getQuestions(@RequestParam(value="openid") String openid,
                                     @RequestParam(value="scene") String scene) {
 
+        logger.info("openid: {}, scene: {}", openid, scene);
+
         // 参数校验
         Long value = null;
         try {
@@ -163,7 +172,7 @@ public class MiniAppController extends BaseController {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        if(value == null)
+        if(scene == null || scene.length() <= 11 || value == null)
             return error("scene_must_be_numbers");
 
         // 查询用户是否存在
@@ -171,13 +180,16 @@ public class MiniAppController extends BaseController {
         if(user == null)
             return error("user_not_found");
 
+        // 从场景值中获取题ID
+        Long idQuestion = Long.parseLong(scene.substring(11, scene.length()));
+
         // 查询题库是否存在
-        Question question = questionDao.findByScene(value);
+        Question question = questionDao.findById(idQuestion);
         if(question == null)
             return error("questions_not_found");
 
         // 查询题库配置信息是否存在
-        QuestionConfig questionConfig = questionConfigDao.findByScene(value);
+        QuestionConfig questionConfig = questionConfigDao.findByQuestionId(idQuestion);
         if(questionConfig == null)
             return error("question_config_not_found");
 
@@ -218,6 +230,8 @@ public class MiniAppController extends BaseController {
         String scene = params.get("scene");
         String results = params.get("results");
 
+        logger.info("openid: {}, scene: {}, results: {}", openid, scene, results);
+
         // 参数校验
         Long value = null;
         try {
@@ -225,7 +239,7 @@ public class MiniAppController extends BaseController {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        if(value == null)
+        if(scene == null || scene.length() <= 11 || value == null)
             return error("scene_must_be_numbers");
 
         // 查询用户是否存在
@@ -233,8 +247,11 @@ public class MiniAppController extends BaseController {
         if(user == null)
             return error("user_not_found");
 
+        // 从场景值中获取题ID
+        Long idQuestion = Long.parseLong(scene.substring(11, scene.length()));
+
         // 查询题库是否存在
-        Question question = questionDao.findByScene(value);
+        Question question = questionDao.findById(idQuestion);
         if(question == null)
             return error("questions_not_found");
 
@@ -249,7 +266,7 @@ public class MiniAppController extends BaseController {
             return error("illegal_results_format");
 
         // 查询用户的答题结果，不存在则创建
-        UserAnswer userAnswer = userAnswerDao.findUserAnswerByScene(openid, value);
+        UserAnswer userAnswer = userAnswerDao.findUserAnswerByOpenidAndQuestionId(openid, idQuestion);
         if(userAnswer == null) {
             userAnswer = new UserAnswer();
             userAnswer.setIdQuestion(question.getId());
@@ -276,6 +293,8 @@ public class MiniAppController extends BaseController {
     public ResponseMsg getEndPageConteng(@RequestParam(value="openid") String openid,
                                          @RequestParam(value="scene") String scene) {
 
+        logger.info("openid: {}, scene: {}", openid, scene);
+
         // 参数校验
         Long value = null;
         try {
@@ -283,7 +302,7 @@ public class MiniAppController extends BaseController {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        if(value == null)
+        if(scene == null || scene.length() <= 11 || value == null)
             return error("scene_must_be_numbers");
 
         // 查询用户是否存在
@@ -291,13 +310,16 @@ public class MiniAppController extends BaseController {
         if(user == null)
             return error("user_not_found");
 
+        // 从场景值中获取题ID
+        Long idQuestion = Long.parseLong(scene.substring(11, scene.length()));
+
         // 查询场景值对应题库的配置信息
         Map<String, Object> result = new HashMap<>();
-        QuestionConfig questionConfig = questionConfigDao.findByScene(value);
+        QuestionConfig questionConfig = questionConfigDao.findById(idQuestion);
         if(questionConfig == null)
             return error("question_config_not_found");
 
-        UserAnswer userAnswer = userAnswerDao.findUserAnswerByScene(openid, value);
+        UserAnswer userAnswer = userAnswerDao.findUserAnswerByOpenidAndQuestionId(openid, idQuestion);
         if(userAnswer == null)
             return error("question_user_answer_not_found");
 

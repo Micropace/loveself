@@ -11,8 +11,6 @@ public interface QuestionConfigMapper extends IBaseMybatisMapper<QuestionConfig>
             "        from question_config\n" +
             "            right join question\n" +
             "            on question_config.id_question = question.id\n" +
-            "            right join qrcode\n" +
-            "            on question.id_qrcode = qrcode.id\n" +
-            "        where qrcode.scene = #{scene}")
-    QuestionConfig selectByScene(@Param("scene") Long scene);
+            "        where question.id = #{idQuestion}")
+    QuestionConfig selectByQuestionId(@Param("idQuestion") Long idQuestion);
 }

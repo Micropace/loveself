@@ -11,15 +11,13 @@ public interface UserAnswerMapper extends IBaseMybatisMapper<UserAnswer> {
 
     @Select(value = "select user_answer.*\n" +
             "        from user_answer\n" +
-            "            right join question\n" +
-            "            on user_answer.id_question = question.id\n" +
             "            right join user\n" +
             "            on user_answer.id_user = user.id\n" +
-            "            right join qrcode\n" +
-            "            on question.id_qrcode = qrcode.id\n" +
+            "            right join question\n" +
+            "            on user_answer.id_question = question.id\n" +
             "        where user.openid = #{openid}\n" +
-            "        and qrcode.scene = #{scene}")
-    UserAnswer selectUserAnswerByScene(@Param("openid") String openid, @Param("scene") Long scene);
+            "        and question.id = #{idQuestion}")
+    UserAnswer selectUserAnswerByOpenidAndQuestionId(@Param("openid") String openid, @Param("idQuestion") Long idQuestion);
 
     @Select(value = "select user_answer.* \n" +
             "        from user_answer\n" +

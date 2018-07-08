@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserAnswerDao extends IBaseDao<UserAnswer> {
 
-    UserAnswer findUserAnswerByScene(String openid, Long scene);
+    UserAnswer findUserAnswerByOpenidAndQuestionId(String openid, Long idQuestion);
 
     List<UserAnswer> selectUserAnswersByQuestionId(Long idQuestion);
 }

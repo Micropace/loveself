@@ -4,6 +4,4 @@ import com.weibu.loveself.common.IBaseDao;
 import com.weibu.loveself.entity.Question;
 
 public interface QuestionDao extends IBaseDao<Question> {
-
-    Question findByScene(Long scene);
 }

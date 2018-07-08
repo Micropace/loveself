@@ -50,8 +50,4 @@ public class QuestionDaoImpl implements QuestionDao {
         return questionMapper.selectAll();
     }
 
-    @Override
-    public Question findByScene(Long scene) {
-        return questionMapper.selectByScene(scene);
-    }
 }

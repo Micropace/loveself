@@ -51,7 +51,7 @@ public class QuestionConfigDaoImpl implements QuestionConfigDao {
     }
 
     @Override
-    public QuestionConfig findByScene(Long scene) {
-        return questionConfigMapper.selectByScene(scene);
+    public QuestionConfig findByQuestionId(Long idQUestion) {
+        return questionConfigMapper.selectByQuestionId(idQUestion);
     }
 }

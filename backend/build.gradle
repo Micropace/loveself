@@ -13,20 +13,23 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'idea'
-//apply plugin: 'war'
+apply plugin: 'war'
 
 jar {
     baseName = "loveself-backend"
-    version = '1.0.0'
     manifest{
         attributes 'Manifest-Version': '1.0'
+        attributes 'Main-Class': 'com.weibu.loveself.Application'
     }
 }
 
-//war {
-//    baseName = "loveself-backend"
-//    version = '1.0.0'
-//}
+war {
+    baseName = "loveself-backend"
+    manifest{
+        attributes 'Manifest-Version': '1.0'
+        attributes 'Main-Class': 'com.weibu.loveself.WebApplication'
+    }
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -44,7 +47,7 @@ dependencies {
     compile 'org.projectlombok:lombok:1.16.20'
 
     //war禁用自带tomcat
-//    providedCompile 'org.springframework.boot:spring-boot-starter-tomcat:1.5.7.RELEASE'
+    providedCompile 'org.springframework.boot:spring-boot-starter-tomcat:1.5.7.RELEASE'
     //mybatis
     compile 'org.mybatis:mybatis:3.4.1'
     compile 'org.mybatis:mybatis-spring:1.3.0'

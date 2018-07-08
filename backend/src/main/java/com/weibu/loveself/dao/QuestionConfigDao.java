@@ -5,5 +5,5 @@ import com.weibu.loveself.entity.QuestionConfig;
 
 public interface QuestionConfigDao extends IBaseDao<QuestionConfig> {
 
-    QuestionConfig findByScene(Long scene);
+    QuestionConfig findByQuestionId(Long idQUestion);
 }
